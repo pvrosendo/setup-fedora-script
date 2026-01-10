@@ -77,11 +77,11 @@ sudo usermod -aG docker $USER
 
 # --- APPLICATIONS ---
 
-# Obsidian
+# OBSIDIAN
 echo -e "${GREEN}📓 Installing Obsidian...${NC}"
 flatpak install flathub md.obsidian.Obsidian -y
 
-# Warp Terminal
+# WARP TERMINAL
 echo -e "${GREEN}⚡ Installing Warp Terminal...${NC}"
 sudo dnf install "https://app.warp.dev/get_warp?package=rpm" -y
 
@@ -89,16 +89,16 @@ sudo dnf install "https://app.warp.dev/get_warp?package=rpm" -y
 echo -e "${GREEN} Installing Dbeaver Community...${NC}"
 flatpak install flathub io.dbeaver.DBeaverCommunity
 
-# Postman
+# POSTMAN
 echo -e "${GREEN} Installing Postman...${NC}"
 flatpak install flathub com.getpostman.Postman
 
-# VS Code
+# VS CODE
 echo -e "${GREEN}💻 Installing Visual Studio Code...${NC}"
 echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc\n" | sudo tee /etc/yum.repos.d/vscode.repo > /dev/null
 sudo dnf install code -y
 
-# Spotify
+# SPOTIFY
 echo -e "${GREEN}🎵 Installing Spotify...${NC}"
 flatpak install flathub com.spotify.Client -y
 
@@ -107,6 +107,22 @@ echo -e "${GREEN}🐚 Installing and configuring ZSH...${NC}"
 sudo dnf install zsh -y
 # Change default shell to Zsh
 sudo usermod --shell /bin/zsh $USER
+
+# HOMEBREW
+## install homebrew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+## add homebrew in path
+echo >> /home/pv/.zshrc
+echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"' >> /home/pv/.zshrc
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
+
+## install dependecies
+sudo dnf group install development-tools
+
+## install gcc
+brew install gcc
+
 
 # --- JETBRAINS MONO FONT ---
 echo -e "${GREEN}🅰️  Installing JetBrains Mono Font...${NC}"
