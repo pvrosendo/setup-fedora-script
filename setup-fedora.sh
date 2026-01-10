@@ -56,6 +56,9 @@ export PATH="$HOME/.local/share/fnm:$PATH"
 eval "`fnm env`"
 fnm install --lts
 
+# Angular
+npm install -g @angular/cli
+
 # --- DOCKER ---
 echo -e "${GREEN}🐳 Configuring Docker...${NC}"
 # Remove old/conflicting versions
